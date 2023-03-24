@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import { AppError, handleError } from '../../errors/appError'
 import clientDeleteSelfService from '../../services/clients/clientDeleteSelf.service'
 
 const clientDeleteSelfController = async (req: Request, res: Response) => {
@@ -13,12 +14,9 @@ const clientDeleteSelfController = async (req: Request, res: Response) => {
 
     } catch (err) {
 
-        if (err instanceof Error) {
+        if (err instanceof AppError) {
 
-            return res.status(401).send({
-                "error": err.name,
-                "message": err.message
-            })
+            handleError(err, res)
         }
     }
 }

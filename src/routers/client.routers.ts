@@ -5,7 +5,7 @@ import clientCreateController from "../controllers/clients/clientCreate.controll
 import clientLoginController from "../controllers/clients/clientLogin.controller";
 import clientListOneController from "../controllers/clients/clientListOne.controller";
 import clientDeleteSelfController from "../controllers/clients/clientDeleteSelf.controller";
-import clientUpdateController from "../controllers/clients/clientUpdatePassword.controller";
+import clientUpdateController from "../controllers/clients/clientUpdate.controller";
 
 import { authClient } from "../middlewares/authClient.middleware";
 
@@ -19,6 +19,6 @@ routes.get("/clients/me", authClient, clientListOneController)
 
 routes.delete("/clients/me", authClient, clientDeleteSelfController)
 
-routes.patch("/clients/me/updatePassword", authClient, clientUpdateController)
+routes.patch("/clients/me/updateClient", authClient, clientUpdateController)
 
 export default routes

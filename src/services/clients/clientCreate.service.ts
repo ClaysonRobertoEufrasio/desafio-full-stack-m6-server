@@ -3,6 +3,7 @@ import { IClientCreate } from "../../interfaces/clients";
 import { Client } from "../../entities/client.entity";
 
 import bcrypt from "bcrypt";
+import { AppError } from "../../errors/appError";
 
 const clientCreateService = async ({ name, email, phone, password }: IClientCreate) => {
     
@@ -14,7 +15,7 @@ const clientCreateService = async ({ name, email, phone, password }: IClientCrea
 
     if (emailAlreadyExists) {
 
-        throw new Error("Email already exists")
+        throw new AppError(409,"Email already exists")
     }
 
     const client = new Client()

@@ -1,6 +1,5 @@
 import { Entity, Column, PrimaryColumn } from "typeorm";
 
-// também importamos aqui o uuid
 import { v4 as uuid } from "uuid"
 
 @Entity()

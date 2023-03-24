@@ -2,8 +2,9 @@ import { AppDataSource } from "../../data-source"
 import { Client } from "../../entities/client.entity"
 import bcrypt from "bcrypt"
 import { IClientCreate } from "../../interfaces/clients"
+import { AppError } from "../../errors/appError"
     
-const clientUpdatePasswordService = async (email: string, clientData: IClientCreate) => {
+const clientUpdateService = async (email: string, clientData: IClientCreate) => {
     
     const clientRepository = AppDataSource.getRepository(Client) 
     
@@ -12,7 +13,7 @@ const clientUpdatePasswordService = async (email: string, clientData: IClientCre
     const account = clients.find(client => client.email === email)
     
     if (bcrypt.compareSync(clientData.password, account!.password)) {
-        throw new Error("Inform a different password.")
+        throw new AppError(409,"Inform a different password.")
     }
     
     const newPassword = bcrypt.hashSync(clientData.password, 10)
@@ -29,4 +30,4 @@ const clientUpdatePasswordService = async (email: string, clientData: IClientCre
     return clientUpdate
 }
     
-export default clientUpdatePasswordService
+export default clientUpdateService
