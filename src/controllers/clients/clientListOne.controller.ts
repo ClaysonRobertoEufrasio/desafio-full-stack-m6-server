@@ -5,9 +5,11 @@ const clientListOneController = async (req: Request, res: Response) => {
 
     try {
 
-        const user =  await clientListOneService({authorization:req.headers.authorization})
-                  
-        return res.status(200).send(user)
+        const email = req.clientEmail
+
+        const client =  await clientListOneService(email)
+        
+        return res.status(200).send(client)
 
     } catch (err) {
 

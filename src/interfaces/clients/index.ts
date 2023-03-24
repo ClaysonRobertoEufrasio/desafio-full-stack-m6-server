@@ -16,7 +16,3 @@ export interface IClientLogin{
     email: string
     password: string
 }
-
-export interface IClientListOne{
-    authorization?: string
-}
