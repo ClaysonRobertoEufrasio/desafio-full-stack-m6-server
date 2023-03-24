@@ -19,6 +19,9 @@ export class Client {
     @Column()
     phone: number
 
+    @Column()
+    password: string
+
     constructor() {
         if (!this.id) {
             this.id = uuid();
