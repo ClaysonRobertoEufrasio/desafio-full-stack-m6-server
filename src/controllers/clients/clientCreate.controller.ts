@@ -8,7 +8,7 @@ const clientCreateController = async (req: Request, res: Response) => {
     try {
 
         const { name, email, phone, password } = req.body
-        
+
         const newClient = await clientCreateService({ name, email, phone, password })
         
         return res.status(201).send(newClient)

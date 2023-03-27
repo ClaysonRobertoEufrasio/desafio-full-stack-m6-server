@@ -1,12 +1,10 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
-
-import { v4 as uuid } from "uuid"
-
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from "typeorm";
+import { Contacts } from "./contacts.entity";
 @Entity()
 
 export class Client {
 
-    @PrimaryColumn('uuid')
+    @PrimaryGeneratedColumn("uuid")
     readonly id: string;
 
     @Column()
@@ -16,14 +14,15 @@ export class Client {
     email: string
 
     @Column()
-    phone: number
+    phone: string
 
     @Column()
     password: string
 
-    constructor() {
-        if (!this.id) {
-            this.id = uuid();
-        }
-    }
+    @OneToMany(() => Contacts, contacts => contacts.client)
+        contacts: Contacts[]
+
+    @CreateDateColumn({ type: "date" })
+    created_at: Date;
+
 }

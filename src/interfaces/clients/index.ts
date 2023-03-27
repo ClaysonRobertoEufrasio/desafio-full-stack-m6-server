@@ -2,13 +2,13 @@ export interface IClient {
     id: string
     name: string
     email: string
-    phone: number
+    phone: string
 }
 
 export interface IClientCreate {
     name: string
     email: string
-    phone: number
+    phone: string
     password: string
 }
 

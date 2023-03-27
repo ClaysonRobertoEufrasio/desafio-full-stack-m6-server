@@ -7,17 +7,18 @@ import { AppError } from "../../errors/appError";
 
 const clientCreateService = async ({ name, email, phone, password }: IClientCreate) => {
     
+    
     const clientRepository = AppDataSource.getRepository(Client)
-
+    
     const clients = await clientRepository.find()
-
+    
     const emailAlreadyExists = clients.find(client => client.email === email)
-
+    
     if (emailAlreadyExists) {
-
+        
         throw new AppError(409,"Email already exists")
     }
-
+    
     const client = new Client()
     client.name = name
     client.email = email
@@ -25,6 +26,7 @@ const clientCreateService = async ({ name, email, phone, password }: IClientCrea
     client.password = bcrypt.hashSync(password,10)
 	
     clientRepository.create(client)
+
     await clientRepository.save(client)
 
     return client

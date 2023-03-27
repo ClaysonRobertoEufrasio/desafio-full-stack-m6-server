@@ -9,16 +9,16 @@ import clientUpdateController from "../controllers/clients/clientUpdate.controll
 
 import { authClient } from "../middlewares/authClient.middleware";
 
-const routes = Router()
+const clientRoutes = Router()
 
-routes.post("/clients", clientCreateController)
-routes.post("/clients/login", clientLoginController)
+clientRoutes.post("/clients", clientCreateController)
+clientRoutes.post("/login", clientLoginController)
 
-routes.get("/clients", authClient ,clientListController)
-routes.get("/clients/me", authClient, clientListOneController)
+clientRoutes.get("/clients", authClient, clientListController)
+clientRoutes.get("/clients/me", authClient, clientListOneController)
 
-routes.delete("/clients/me", authClient, clientDeleteSelfController)
+clientRoutes.delete("/clients/me", authClient, clientDeleteSelfController)
 
-routes.patch("/clients/me/updateClient", authClient, clientUpdateController)
+clientRoutes.patch("/clients/me/updateClient", authClient, clientUpdateController)
 
-export default routes
+export default clientRoutes
